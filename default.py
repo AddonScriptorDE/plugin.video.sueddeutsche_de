@@ -19,6 +19,7 @@ def index():
         xbmcplugin.endOfDirectory(pluginhandle)
 
 def listColumns():
+        xbmcplugin.addSortMethod(pluginhandle, xbmcplugin.SORT_METHOD_LABEL)
         addDir("Rasenschach - Die EM Taktikkolumne","http://www.sueddeutsche.de/thema/Taktik-Kolumne",'listColumnVideos',"http://gfx.sueddeutsche.de/video/kolumnen/rasenschach.jpg")
         addDir("Der Nächste, bitte","http://www.sueddeutsche.de/thema/Der_N%C3%A4chste_bitte",'listColumnVideos',"http://gfx.sueddeutsche.de/video/kolumnen/der_naechste_bitte.jpg")
         addDir("Prantls Politik","http://www.sueddeutsche.de/thema/Prantls_Politik",'listColumnVideos',"http://gfx.sueddeutsche.de/video/kolumnen/prantl.jpg")
@@ -30,6 +31,8 @@ def listColumns():
         addDir("Münchner Mysterien","http://www.sueddeutsche.de/thema/M%C3%BCnchner_Mysterien",'listColumnVideos',"http://gfx.sueddeutsche.de/video/kolumnen/muenchner_mysterien.gif")
         addDir("Aktenlage","http://www.sueddeutsche.de/thema/Aktenlage",'listColumnVideos',"http://gfx.sueddeutsche.de/video/kolumnen/aktenlage.gif")
         addDir("Der Flügelflitzer","http://www.sueddeutsche.de/thema/Fl%C3%BCgelflitzer",'listColumnVideos',"http://gfx.sueddeutsche.de/video/kolumnen/fluegelflitzer.jpg")
+        addDir("2 mal 2 - Der Fußball Schlagabtausch","http://www.sueddeutsche.de/thema/2_mal_2",'listColumnVideos',"http://gfx.sueddeutsche.de/video/kolumnen/2x2.jpg")
+        addDir("Auftakt","http://www.sueddeutsche.de/thema/Auftakt",'listColumnVideos',"http://gfx.sueddeutsche.de/video/kolumnen/auftakt.jpg")
         xbmcplugin.endOfDirectory(pluginhandle)
 
 def listColumnVideos(url):
@@ -91,7 +94,7 @@ def cleanTitle(title):
 def getUrl(url):
         req = urllib2.Request(url)
         req.add_header('User-Agent', 'Mozilla/5.0 (Windows NT 6.1; rv:11.0) Gecko/20100101 Firefox/11.0')
-        response = urllib2.urlopen(req)
+        response = urllib2.urlopen(req,timeout=30)
         link=response.read()
         response.close()
         return link
